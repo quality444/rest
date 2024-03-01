@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+    www:
+        build: docker/php
+        container_name: php-container
+        ports:
+          - "8080:80"
+        volumes:
+            - ./vhosts:/etc/apache2/sites-enabled
+            - ./:/var/www
+        restart: always
+        extra_hosts:
+            - host.docker.internal:host-gateway
+#         networks:
+#             network:
+#                 ipv4_address: 10.5.0.5
+
+
+# networks:
+#   network:
+#     driver: bridge
+#     ipam:
+#       config:
+#         - subnet: 10.5.0.0/16
+#           gateway: 10.5.0.1
